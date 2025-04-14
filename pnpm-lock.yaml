@@ -15,7 +15,7 @@ importers:
         specifier: ^5.6.1
         version: 5.6.1(rollup@4.40.0)(typescript@5.8.3)
       sharp:
-        specifier: ^0.32.5
+        specifier: ^0.32.6
         version: 0.32.6
       starlight-theme-rapide:
         specifier: ^0.4.0

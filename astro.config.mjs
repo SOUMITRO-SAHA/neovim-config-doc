@@ -23,4 +23,9 @@ export default defineConfig({
 			plugins: [starlightThemeRapide()],
 		}),
 	],
+	image: {
+		service: {
+			entrypoint: "astro/assets/services/noop",
+		},
+	},
 });
