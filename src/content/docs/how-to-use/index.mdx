@@ -1,0 +1,73 @@
+---
+title: How to Use Lazy Configuration and Plugins
+description: A comprehensive guide on how to use the Neovim configuration
+---
+
+This guide focuses on Neovim-specific features and plugin usage. For basic Vim commands and navigation, please refer to the [Vim Cheatsheet](/vim/cheatsheet).
+
+## Basic Navigation
+
+### Window Management
+
+- `<C-h/j/k/l>` - Navigate between windows
+- `<C-w>h/j/k/l` - Move to window in direction
+- `<C-w>=` - Equalize window sizes
+- `<C-w>_` - Maximize window height
+- `<C-w>|` - Maximize window width
+- `<C-w>o` - Close other windows
+- `<C-w>q` - Close current window
+
+### Buffer Management
+
+- `<Space>bb` - Show buffer list
+- `<C-h/l>` - Switch between buffers
+- `<Space>bd` - Delete current buffer
+- `<Space>bn` - Next buffer
+- `<Space>bp` - Previous buffer
+
+### Tab Management
+
+- `<Space>tn` - New tab
+- `<Space>tc` - Close tab
+- `<Space>th` - Previous tab
+- `<Space>tl` - Next tab
+- `<Space>tm` - Move tab
+
+## Plugin Features
+
+Each plugin has its own dedicated documentation. Here's a quick overview of the main plugins and their key features:
+
+### File Navigation
+
+- [Telescope](/how-to-use/plugins/telescope) - Fuzzy finder for files, buffers, and more
+- [Neo-tree](/how-to-use/plugins/neo-tree) - File explorer with git integration
+
+### LSP & Completion
+
+- [LSP Config](/how-to-use/plugins/lsp-config) - Language Server Protocol support
+- [nvim-cmp](/how-to-use/plugins/nvim-cmp) - Intelligent code completion
+
+### Git Integration
+
+- [Gitsigns](/how-to-use/plugins/gitsigns) - Git decorations in the gutter
+- [Fugitive](/how-to-use/plugins/fugitive) - Git commands and operations
+
+### UI Enhancement
+
+- [Lualine](/how-to-use/plugins/lualine) - Status line customization
+- [Bufferline](/how-to-use/plugins/bufferline) - Tab-like buffer display
+- [Indent-blankline](/how-to-use/plugins/indent-blankline) - Indent guides
+- [Which-key](/how-to-use/plugins/which-key) - Keybinding helper
+
+### Terminal Integration
+
+- [Toggleterm](/how-to-use/plugins/toggleterm) - Terminal management
+
+For detailed information about each plugin, please visit their respective documentation pages in the [Plugins](/how-to-use/plugins) section.
+
+## Useful Resources
+
+- [Neovim Documentation](https://neovim.io/doc/)
+- [Lua Guide](https://neovim.io/doc/user/lua.html)
+- [Plugin Development](https://neovim.io/doc/user/develop.html)
+- [Community Wiki](https://github.com/neovim/neovim/wiki)

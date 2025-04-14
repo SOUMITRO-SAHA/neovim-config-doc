@@ -1,26 +1,26 @@
-// @ts-check
-import { defineConfig } from 'astro/config';
-import starlight from '@astrojs/starlight';
+import { defineConfig } from "astro/config";
+import starlight from "@astrojs/starlight";
+import starlightThemeRapide from "starlight-theme-rapide";
+import { sidebar } from "./config/sidebar.config.ts";
 
-// https://astro.build/config
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: 'My Docs',
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
-			sidebar: [
+			title: "Lazy Docs",
+			social: [
 				{
-					label: 'Guides',
-					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', slug: 'guides/example' },
-					],
+					icon: "github",
+					label: "GitHub",
+					href: "https://github.com/SOUMITRO-SAHA/neovim-config-doc",
 				},
 				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
+					icon: "twitter",
+					label: "Twitter",
+					href: "https://x.com/SOUMITRO_SAHA",
 				},
 			],
+			sidebar: sidebar,
+			plugins: [starlightThemeRapide()],
 		}),
 	],
 });

@@ -1,0 +1,235 @@
+---
+title: Vim Cheatsheet
+description: A comprehensive guide to Vim commands and shortcuts
+---
+
+A quick reference guide for essential Vim commands and shortcuts.
+
+## Modes
+
+- **Normal Mode**: Default mode for commands
+- **Insert Mode**: For typing text
+- **Visual Mode**: For selecting text
+- **Command Mode**: For entering commands
+
+## Basic Navigation
+
+### Cursor Movement
+
+```
+h - Move left
+j - Move down
+k - Move up
+l - Move right
+w - Move to next word
+b - Move to previous word
+0 - Move to start of line
+$ - Move to end of line
+^ - Move to first non-blank character
+gg - Move to start of file
+G  - Move to end of file
+```
+
+### Screen Navigation
+
+```
+Ctrl+f - Page down
+Ctrl+b - Page up
+Ctrl+d - Half page down
+Ctrl+u - Half page up
+zz    - Center cursor on screen
+zt    - Top of screen
+zb    - Bottom of screen
+```
+
+## Editing
+
+### Basic Operations
+
+```
+i  - Enter insert mode
+a  - Enter insert mode after cursor
+o  - New line below
+O  - New line above
+x  - Delete character under cursor
+dd - Delete line
+yy - Yank (copy) line
+p  - Paste after cursor
+P  - Paste before cursor
+u  - Undo
+Ctrl+r - Redo
+```
+
+### Advanced Operations
+
+```
+ciw - Change inner word
+ci" - Change text inside quotes
+ci( - Change text inside parentheses
+diw - Delete inner word
+di" - Delete text inside quotes
+di( - Delete text inside parentheses
+```
+
+## Visual Mode
+
+### Selection
+
+```
+v   - Visual mode (character-wise)
+V   - Visual mode (line-wise)
+Ctrl+v - Visual mode (block-wise)
+```
+
+### Operations on Selection
+
+```
+y   - Yank (copy)
+d   - Delete
+c   - Change
+>   - Indent right
+<   - Indent left
+```
+
+## Search and Replace
+
+### Search
+
+```
+/pattern - Search forward
+?pattern - Search backward
+n        - Next match
+N        - Previous match
+*        - Search for word under cursor
+#        - Search backward for word under cursor
+```
+
+### Replace
+
+```
+:s/old/new      - Replace first occurrence
+:s/old/new/g    - Replace all occurrences
+:%s/old/new/g   - Replace all in file
+:%s/old/new/gc  - Replace all with confirmation
+```
+
+## Windows and Buffers
+
+### Window Management
+
+```
+Ctrl+w h - Move to left window
+Ctrl+w j - Move to bottom window
+Ctrl+w k - Move to top window
+Ctrl+w l - Move to right window
+Ctrl+w = - Equalize window sizes
+Ctrl+w _ - Maximize window height
+Ctrl+w | - Maximize window width
+```
+
+### Buffer Management
+
+```
+:bn - Next buffer
+:bp - Previous buffer
+:bd - Delete buffer
+:b# - Switch to alternate buffer
+:ls - List buffers
+```
+
+## Marks and Jumps
+
+### Marks
+
+```
+ma - Set mark 'a'
+'a - Jump to mark 'a'
+`. - Jump to last edit
+'' - Jump to last position
+```
+
+### Jumps
+
+```
+Ctrl+o - Jump back
+Ctrl+i - Jump forward
+:jumps - Show jump list
+```
+
+## Folds
+
+### Fold Commands
+
+```
+zf - Create fold
+zo - Open fold
+zc - Close fold
+za - Toggle fold
+zR - Open all folds
+zM - Close all folds
+```
+
+## Macros
+
+### Recording and Playback
+
+```
+qa - Start recording macro 'a'
+q  - Stop recording
+@a - Play macro 'a'
+@@ - Repeat last macro
+```
+
+## Useful Commands
+
+### File Operations
+
+```
+:w   - Save file
+:q   - Quit
+:wq  - Save and quit
+:q!  - Force quit
+ZZ   - Save and quit
+ZQ   - Quit without saving
+```
+
+### Help
+
+```
+:help - Open help
+:help topic - Help on specific topic
+:help :command - Help on command
+```
+
+## Tips
+
+1. **Counts**: Most commands can be prefixed with a number
+
+   ```
+   5j    - Move down 5 lines
+   3dd   - Delete 3 lines
+   10yy  - Yank 10 lines
+   ```
+
+2. **Combining Commands**:
+
+   ```
+   d$    - Delete to end of line
+   cw    - Change word
+   yiw   - Yank inner word
+   ```
+
+3. **Text Objects**:
+
+   ```
+   iw    - inner word
+   i"    - inner quotes
+   i(    - inner parentheses
+   a"    - around quotes
+   ```
+
+4. **Remember**:
+   - Commands are usually: `[count][command][motion/text-object]`
+   - Most commands can be undone with `u`
+   - Use `.` to repeat last change
+   - Use `@:` to repeat last command

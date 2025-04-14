@@ -1,0 +1,56 @@
+---
+title: Installation Guide
+description: Step-by-step guide to install and set up the Neovim configuration
+---
+
+This guide will help you install and set up the Neovim configuration.
+
+## Prerequisites
+
+- Neovim (version 0.9.0 or higher)
+- Git
+- A Unix-like operating system (Linux, macOS, or WSL on Windows)
+
+## Installation Steps
+
+1. Backup your existing Neovim configuration (if any):
+
+   ```bash
+   mv ~/.config/nvim ~/.config/nvim.bak
+   mv ~/.local/share/nvim ~/.local/share/nvim.bak
+   mv ~/.local/state/nvim ~/.local/state/nvim.bak
+   mv ~/.cache/nvim ~/.cache/nvim.bak
+   ```
+
+2. Clone the repository:
+
+   ```bash
+   git clone https://github.com/SOUMITRO-SAHA/neovim-config.git ~/.config/nvim
+   ```
+
+3. Start Neovim:
+
+   ```bash
+   nvim
+   ```
+
+   The first time you start Neovim, Lazy.nvim will automatically install all plugins.
+
+## Post-Installation
+
+After installation, you can:
+
+- Customize your configuration by editing files in `~/.config/nvim/lua/`
+- Add or remove plugins in `~/.config/nvim/lua/plugins/`
+- Update plugins using `:Lazy update`
+
+## Troubleshooting
+
+If you encounter any issues:
+
+1. Check if Neovim version is 0.9.0 or higher
+2. Ensure all prerequisites are installed
+3. Try removing the Neovim cache: `rm -rf ~/.cache/nvim`
+4. Restart Neovim
+
+For more help, visit the [GitHub repository](https://github.com/SOUMITRO-SAHA/neovim-config) or open an issue.

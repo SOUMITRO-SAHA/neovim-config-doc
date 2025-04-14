@@ -1,0 +1,52 @@
+---
+title: Plugins
+description: Documentation for all plugins used in this Neovim configuration
+---
+
+# Neovim Plugins
+
+This section contains detailed documentation for all the plugins used in this Neovim configuration. Each plugin has its own dedicated page with usage instructions, configuration options, and tips.
+
+## Available Plugins
+
+### File Navigation
+
+- [Telescope](/how-to-use/plugins/telescope) - Fuzzy finder for files, buffers, and more
+- [Neo-tree](/how-to-use/plugins/neo-tree) - File explorer with git integration
+
+### LSP & Completion
+
+- [LSP Config](/how-to-use/plugins/lsp-config) - Language Server Protocol support
+- [nvim-cmp](/how-to-use/plugins/nvim-cmp) - Intelligent code completion
+
+### Git Integration
+
+- [Gitsigns](/how-to-use/plugins/gitsigns) - Git decorations in the gutter
+- [Fugitive](/how-to-use/plugins/fugitive) - Git commands and operations
+
+### UI Enhancement
+
+- [Lualine](/how-to-use/plugins/lualine) - Status line customization
+- [Bufferline](/how-to-use/plugins/bufferline) - Tab-like buffer display
+- [Indent-blankline](/how-to-use/plugins/indent-blankline) - Indent guides
+- [Which-key](/how-to-use/plugins/which-key) - Keybinding helper
+
+### Terminal Integration
+
+- [Toggleterm](/how-to-use/plugins/toggleterm) - Terminal management
+
+## Plugin Management
+
+This configuration uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager. All plugins are configured in the `lua/plugins` directory, with each plugin having its own configuration file.
+
+To add a new plugin:
+
+1. Create a new file in the `lua/plugins` directory
+2. Add the plugin configuration using the lazy.nvim syntax
+3. Restart Neovim or run `:Lazy sync` to install the plugin
+
+## Customizing Plugins
+
+Each plugin's configuration can be customized by editing its respective file in the `lua/plugins` directory. The configuration files contain detailed comments explaining each option.
+
+For more information on customizing specific plugins, please refer to their individual documentation pages.

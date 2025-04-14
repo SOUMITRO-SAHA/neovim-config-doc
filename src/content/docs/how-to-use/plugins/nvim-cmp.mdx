@@ -1,0 +1,188 @@
+---
+title: nvim-cmp
+description: A completion engine plugin for Neovim
+---
+
+# nvim-cmp
+
+[nvim-cmp](https://github.com/hrsh7th/nvim-cmp) is a completion engine plugin for Neovim. It provides a framework for creating and managing completion sources, offering features like LSP completion, buffer completion, and more.
+
+## Key Features
+
+- Multiple completion sources
+- Customizable completion menu
+- Snippet support
+- Fuzzy matching
+- Custom sorting
+- Documentation preview
+- Native LSP integration
+
+## Basic Usage
+
+### Completion Menu
+
+- `<C-n>` - Next completion item
+- `<C-p>` - Previous completion item
+- `<C-d>` - Scroll documentation down
+- `<C-u>` - Scroll documentation up
+- `<C-y>` - Accept completion
+- `<C-e>` - Close completion menu
+- `<CR>` - Accept completion
+- `<Tab>` - Accept completion
+
+### Documentation Window
+
+- `<C-d>` - Scroll down
+- `<C-u>` - Scroll up
+- `<C-e>` - Close window
+- `<C-y>` - Accept completion
+
+## Configuration
+
+### Basic Setup
+
+```lua
+local cmp = require('cmp')
+
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
+  mapping = {
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+  },
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+    { name = 'buffer' },
+    { name = 'path' },
+  },
+})
+```
+
+### Custom Sources
+
+Add custom completion sources:
+
+```lua
+cmp.setup({
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+    { name = 'buffer' },
+    { name = 'path' },
+    { name = 'cmdline' },
+    { name = 'git' },
+    { name = 'emoji' },
+  },
+})
+```
+
+### Custom Sorting
+
+Configure how completion items are sorted:
+
+```lua
+cmp.setup({
+  sorting = {
+    comparators = {
+      cmp.config.compare.offset,
+      cmp.config.compare.exact,
+      cmp.config.compare.score,
+      cmp.config.compare.recently_used,
+      cmp.config.compare.kind,
+      cmp.config.compare.sort_text,
+      cmp.config.compare.length,
+      cmp.config.compare.order,
+    },
+  },
+})
+```
+
+## Advanced Features
+
+### Custom Menu
+
+Customize the completion menu appearance:
+
+```lua
+cmp.setup({
+  window = {
+    completion = {
+      border = "rounded",
+      winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+    },
+    documentation = {
+      border = "rounded",
+      winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+    },
+  },
+})
+```
+
+### Custom Formatting
+
+Format completion items:
+
+```lua
+cmp.setup({
+  formatting = {
+    format = function(entry, vim_item)
+      vim_item.menu = ({
+        nvim_lsp = "[LSP]",
+        luasnip = "[Snippet]",
+        buffer = "[Buffer]",
+        path = "[Path]",
+      })[entry.source.name]
+      return vim_item
+    end,
+  },
+})
+```
+
+### Snippet Integration
+
+Configure snippet expansion:
+
+```lua
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
+})
+```
+
+## Tips and Tricks
+
+1. **Quick Completion**
+
+   - Use `<C-n>` and `<C-p>` to navigate completions
+   - Press `<C-Space>` to manually trigger completion
+   - Use `<C-e>` to close the completion menu
+
+2. **Documentation**
+
+   - Use `<C-d>` and `<C-u>` to scroll documentation
+   - Press `<C-y>` to accept completion
+   - Use `<C-e>` to close documentation
+
+3. **Custom Sources**
+   - Add sources based on your needs
+   - Configure source priority
+   - Customize source behavior
+
+## Resources
+
+- [Official Documentation](https://github.com/hrsh7th/nvim-cmp)
+- [Example Configurations](https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings)
+- [Video Tutorial](https://www.youtube.com/watch?v=7Yy3h9t1t1c)
+- [GitHub Issues](https://github.com/hrsh7th/nvim-cmp/issues)
+- [Completion Sources](https://github.com/topics/nvim-cmp-source)

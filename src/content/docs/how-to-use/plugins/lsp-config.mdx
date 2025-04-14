@@ -1,0 +1,188 @@
+---
+title: LSP Config
+description: Language Server Protocol configuration for Neovim
+---
+
+# LSP Config
+
+[nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) is the official configuration for Neovim's built-in LSP client. It provides language support features like code completion, diagnostics, and code actions.
+
+## Key Features
+
+- Language Server Protocol support
+- Code completion
+- Diagnostics
+- Code actions
+- Symbol navigation
+- Documentation hover
+- Format on save
+- Inlay hints
+
+## Basic Usage
+
+### Navigation
+
+- `gd` - Go to definition
+- `gr` - Go to references
+- `K` - Show documentation
+- `<C-k>` - Show documentation
+- `]d` - Next diagnostic
+- `[d` - Previous diagnostic
+- `<Space>ca` - Code actions
+- `<Space>rn` - Rename symbol
+
+### Diagnostics
+
+- `]d` - Next diagnostic
+- `[d` - Previous diagnostic
+- `<Space>e` - Show diagnostics
+- `<Space>q` - Show quickfix
+- `<Space>f` - Format document
+
+## Supported Languages
+
+LSP Config supports many languages out of the box:
+
+- JavaScript/TypeScript
+- Python
+- Go
+- Rust
+- C/C++
+- Java
+- Lua
+- And many more...
+
+## Configuration
+
+### Basic Setup
+
+```lua
+require('lspconfig').setup({
+  -- Global settings
+  diagnostics = {
+    underline = true,
+    update_in_insert = false,
+    virtual_text = {
+      spacing = 4,
+      prefix = '●',
+    },
+    severity_sort = true,
+  },
+  -- Key mappings
+  mappings = {
+    n = {
+      ['gd'] = vim.lsp.buf.definition,
+      ['gr'] = vim.lsp.buf.references,
+      ['K'] = vim.lsp.buf.hover,
+      ['<C-k>'] = vim.lsp.buf.signature_help,
+      ['<Space>ca'] = vim.lsp.buf.code_action,
+      ['<Space>rn'] = vim.lsp.buf.rename,
+    },
+  },
+})
+```
+
+### Language-Specific Setup
+
+```lua
+-- TypeScript/JavaScript
+require('lspconfig').tsserver.setup({
+  settings = {
+    typescript = {
+      inlayHints = {
+        includeInlayParameterNameHints = 'all',
+        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+      },
+    },
+  },
+})
+
+-- Python
+require('lspconfig').pyright.setup({
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+        diagnosticMode = "workspace",
+      },
+    },
+  },
+})
+```
+
+## Advanced Features
+
+### Code Actions
+
+Code actions provide quick fixes and refactoring options:
+
+```lua
+vim.keymap.set('n', '<Space>ca', function()
+  vim.lsp.buf.code_action({
+    context = { only = { 'quickfix', 'refactor' } },
+  })
+end)
+```
+
+### Format on Save
+
+Enable format on save for specific file types:
+
+```lua
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = { "*.js", "*.jsx", "*.ts", "*.tsx" },
+  callback = function()
+    vim.lsp.buf.format()
+  end,
+})
+```
+
+### Inlay Hints
+
+Enable inlay hints for better code understanding:
+
+```lua
+require('lspconfig').tsserver.setup({
+  settings = {
+    typescript = {
+      inlayHints = {
+        includeInlayParameterNameHints = 'all',
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+      },
+    },
+  },
+})
+```
+
+## Tips and Tricks
+
+1. **Quick Navigation**
+
+   - Use `gd` to jump to definitions
+   - Press `gr` to see references
+   - Use `K` to view documentation
+
+2. **Code Actions**
+
+   - Use `<Space>ca` to see available actions
+   - Press `<Space>rn` to rename symbols
+   - Use `<Space>f` to format code
+
+3. **Diagnostics**
+   - Use `]d` and `[d` to navigate diagnostics
+   - Press `<Space>e` to see all diagnostics
+   - Use `<Space>q` to see quickfix list
+
+## Resources
+
+- [Official Documentation](https://github.com/neovim/nvim-lspconfig)
+- [LSP Configuration Guide](https://github.com/neovim/nvim-lspconfig/wiki)
+- [Language Server Protocol](https://microsoft.github.io/language-server-protocol/)
+- [Video Tutorial](https://www.youtube.com/watch?v=dF9I2L0Mq1U)
+- [Example Configurations](https://github.com/neovim/nvim-lspconfig/wiki/Example-configurations)

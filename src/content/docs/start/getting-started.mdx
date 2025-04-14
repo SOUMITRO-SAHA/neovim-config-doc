@@ -1,0 +1,101 @@
+---
+title: Getting Started
+description: Quick start guide for using the Neovim configuration
+---
+
+Welcome to your Neovim configuration! This guide will help you get up and running with the essential features.
+
+## First Launch
+
+When you first launch Neovim after installation:
+
+1. Wait for Lazy.nvim to finish installing plugins
+2. You'll see a clean, modern interface with:
+   - Status line at the bottom
+   - File explorer on the left (if enabled)
+   - Buffer line at the top
+
+## Essential Keybindings
+
+### Navigation
+
+- `<Space>` - Leader key
+- `<C-h/j/k/l>` - Navigate between windows
+- `<C-s>` - Save file
+- `<C-q>` - Quit
+- `<C-w>` - Window commands
+
+### File Operations
+
+- `<Space>ff` - Find files (Telescope)
+- `<Space>fb` - Find buffers
+- `<Space>fg` - Live grep
+- `<Space>e` - Toggle file explorer
+
+### LSP Features
+
+- `gd` - Go to definition
+- `gr` - Go to references
+- `K` - Show documentation
+- `<Space>ca` - Code actions
+- `<Space>rn` - Rename symbol
+
+### Git Operations
+
+- `<Space>gg` - Open Git interface
+- `]c` / `[c` - Navigate changes
+- `<Space>gb` - Toggle Git blame
+
+## Basic Workflow
+
+1. **Opening Files**
+
+   ```vim
+   :e filename    " Open a file
+   :Ex            " Open file explorer
+   <Space>ff      " Fuzzy find files
+   ```
+
+2. **Editing**
+
+   ```vim
+   i              " Enter insert mode
+   <Esc>          " Return to normal mode
+   dd             " Delete line
+   yy             " Yank (copy) line
+   p              " Paste
+   u              " Undo
+   <C-r>          " Redo
+   ```
+
+3. **Saving and Quitting**
+   ```vim
+   :w             " Save
+   :q             " Quit
+   :wq            " Save and quit
+   :q!            " Force quit
+   ```
+
+## Next Steps
+
+1. **Customize Your Setup**
+
+   - Edit `~/.config/nvim/lua/config/options.lua` for basic settings
+   - Modify `~/.config/nvim/lua/config/keymaps.lua` for keybindings
+   - Adjust colorscheme in `~/.config/nvim/lua/plugins/colorscheme.lua`
+
+2. **Add New Plugins**
+
+   - Create new files in `~/.config/nvim/lua/plugins/`
+   - Use `:Lazy` to manage plugins
+
+3. **Learn More**
+   - Check out the [Configuration Guide](/configuration/basic-setup)
+   - Explore [Plugin References](/reference/reference)
+   - Visit the [GitHub repository](https://github.com/SOUMITRO-SAHA/neovim-config)
+
+## Need Help?
+
+- Use `:help` in Neovim for built-in documentation
+- Check the [Troubleshooting](/guides/installation#troubleshooting) section
+- Visit our [GitHub repository](https://github.com/SOUMITRO-SAHA/neovim-config) for issues and discussions
