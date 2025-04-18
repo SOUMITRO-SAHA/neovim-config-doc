@@ -3,219 +3,68 @@ title: Toggleterm
 description: A terminal integration plugin for Neovim
 ---
 
-# Toggleterm
+Toggleterm is a Neovim plugin that provides terminal integration with features like floating windows, multiple terminals, and custom commands.
 
-[toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) is a Neovim plugin that provides terminal integration with features like floating windows, multiple terminals, and custom commands.
+## What Problem Does It Solve?
 
-## Key Features
+Traditional terminal integration in Neovim can be:
+- Limited to basic terminal windows
+- Missing floating terminal support
+- No multiple terminal instances
+- Lacks customization options
+- Inefficient terminal management
 
-- Floating terminal windows
-- Multiple terminal instances
-- Custom terminal commands
-- Terminal size customization
-- Direction control
-- Auto-insert mode
-- Terminal buffer management
-- Performance optimized
+## How It Improves Productivity
 
-## Basic Usage
+1. **Better Interface**:
+   - Floating terminal windows
+   - Multiple terminal instances
+   - Terminal size customization
+   - Direction control
 
-### Terminal Operations
+2. **Enhanced Features**:
+   - Custom terminal commands
+   - Auto-insert mode
+   - Terminal buffer management
+   - Performance optimization
 
-- `<C-\\>` - Toggle terminal
-- `<C-\\><C-\\>` - Toggle terminal (float)
-- `<C-\\><C-h>` - Toggle terminal (horizontal)
-- `<C-\\><C-v>` - Toggle terminal (vertical)
-- `<C-\\><C-t>` - Toggle terminal (tab)
-- `<C-\\><C-o>` - Toggle terminal (open)
-- `<C-\\><C-c>` - Toggle terminal (close)
-- `<C-\\><C-n>` - Toggle terminal (new)
+3. **Advanced Features**:
+   - Custom commands
+   - Terminal autocommands
+   - Terminal highlights
+   - Integration with other plugins
 
-### Terminal Navigation
+## How to Use
 
-- `<C-h/j/k/l>` - Navigate between windows
-- `<C-w>h/j/k/l` - Move to window
-- `<C-w>w` - Switch windows
-- `<C-w>p` - Previous window
-- `<C-w>c` - Close window
-- `<C-w>o` - Close other windows
+### Basic Usage
+- Toggle terminal with C-\
+- Toggle float with C-\C-\
+- Toggle horizontal with C-\C-h
+- Toggle vertical with C-\C-v
+- Toggle tab with C-\C-t
+- Toggle open with C-\C-o
+- Toggle close with C-\C-c
+- Toggle new with C-\C-n
+- Navigate with C-h/j/k/l
+- Move to window with C-w+h/j/k/l
+- Switch windows with C-w+w
+- Previous window with C-w+p
+- Close window with C-w+c
+- Close other windows with C-w+o
 
-## Configuration
+### Configuration
+- Edit `lua/config/toggleterm.lua`
+- Set up custom terminals
+- Configure keybindings
+- Customize appearance
 
-### Basic Setup
+### Integration
+- Works with git
+- Compatible with LSP
+- Supports custom commands
+- Works with other plugins
 
-```lua
-require('toggleterm').setup({
-  size = 20,
-  open_mapping = [[<c-\>]],
-  hide_numbers = true,
-  shade_filetypes = {},
-  shade_terminals = true,
-  shading_factor = 2,
-  start_in_insert = true,
-  insert_mappings = true,
-  persist_size = true,
-  direction = 'float',
-  close_on_exit = true,
-  shell = vim.o.shell,
-  float_opts = {
-    border = 'curved',
-    winblend = 0,
-    highlights = {
-      border = "Normal",
-      background = "Normal",
-    },
-  },
-})
-```
-
-### Custom Terminals
-
-Define custom terminal commands:
-
-```lua
-require('toggleterm').setup({
-  terminals = {
-    {
-      cmd = "lazygit",
-      keymap = "<C-g>",
-      direction = "float",
-      size = 0.9,
-      float_opts = {
-        border = "double",
-        width = 120000,
-        height = 30000,
-      },
-    },
-    {
-      cmd = "htop",
-      keymap = "<C-h>",
-      direction = "float",
-      size = 0.9,
-      float_opts = {
-        border = "double",
-      },
-    },
-  },
-})
-```
-
-### Terminal Size
-
-Configure terminal size and position:
-
-```lua
-require('toggleterm').setup({
-  size = function(term)
-    if term.direction == "horizontal" then
-      return 15
-    elseif term.direction == "vertical" then
-      return vim.o.columns * 0.4
-    end
-  end,
-  float_opts = {
-    width = 120,
-    height = 30,
-    x = 0,
-    y = 0,
-  },
-})
-```
-
-## Advanced Features
-
-### Custom Commands
-
-Create custom terminal commands:
-
-```lua
-local Terminal = require('toggleterm.terminal').Terminal
-
-local lazygit = Terminal:new({
-  cmd = "lazygit",
-  dir = "git_dir",
-  direction = "float",
-  float_opts = {
-    border = "double",
-  },
-  hidden = true,
-})
-
-function _LAZYGIT_TOGGLE()
-  lazygit:toggle()
-end
-
-vim.api.nvim_set_keymap("n", "<C-g>", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", {noremap = true, silent = true})
-```
-
-### Terminal Autocommands
-
-Add autocommands for terminal events:
-
-```lua
-local function on_open(term)
-  vim.cmd("startinsert!")
-  vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", {noremap = true, silent = true})
-end
-
-local function on_close(term)
-  vim.cmd("startinsert!")
-end
-
-require('toggleterm').setup({
-  on_open = on_open,
-  on_close = on_close,
-})
-```
-
-### Terminal Highlights
-
-Customize terminal highlights:
-
-```lua
-require('toggleterm').setup({
-  highlights = {
-    Normal = {
-      guibg = "#1a1b26",
-    },
-    NormalFloat = {
-      link = 'Normal',
-    },
-    FloatBorder = {
-      guifg = "#1a1b26",
-      guibg = "#1a1b26",
-    },
-  },
-  float_opts = {
-    border = "double",
-    winblend = 0,
-  },
-})
-```
-
-## Tips and Tricks
-
-1. **Quick Access**
-
-   - Use `<C-\>` to toggle terminal
-   - Press `<C-\><C-\>` for floating terminal
-   - Use `<C-\><C-h/v>` for split terminals
-
-2. **Terminal Management**
-
-   - Create custom terminal commands
-   - Use different terminal sizes
-   - Configure terminal behavior
-
-3. **Integration**
-   - Add terminal autocommands
-   - Customize terminal appearance
-   - Set up terminal mappings
-
-## Resources
-
-- [Official Documentation](https://github.com/akinsho/toggleterm.nvim)
-- [Example Configurations](https://github.com/akinsho/toggleterm.nvim/wiki/Example-configurations)
-- [Video Tutorial](https://www.youtube.com/watch?v=3t1v1b1b1b1b)
-- [GitHub Issues](https://github.com/akinsho/toggleterm.nvim/issues)
-- [Related Plugins](https://github.com/topics/neovim-terminal)
+## Reference Links
+- [GitHub Repository](https://github.com/akinsho/toggleterm.nvim)
+- [Documentation](https://github.com/akinsho/toggleterm.nvim#features)
+- [Examples](https://github.com/akinsho/toggleterm.nvim/wiki/Example-configurations)

@@ -3,134 +3,65 @@ title: Telescope
 description: A powerful fuzzy finder for Neovim
 ---
 
-# Telescope
+Telescope is a highly customizable fuzzy finder for Neovim that provides a modern interface for searching through files, buffers, git commits, and more.
 
-[Telescope](https://github.com/nvim-telescope/telescope.nvim) is a highly customizable fuzzy finder for Neovim. It provides a modern interface for searching through files, buffers, git commits, and more.
+## What Problem Does It Solve?
 
-## Key Features
+Traditional file finding in Neovim can be:
+- Slow and inefficient
+- Limited search capabilities
+- No fuzzy matching
+- Missing preview functionality
+- Lacks git integration
 
-- Fuzzy finding for files, buffers, and more
-- Live grep (search within files)
-- Git integration
-- Customizable preview windows
-- Extensible architecture
+## How It Improves Productivity
 
-## Basic Usage
+1. **Better Interface**:
+   - Fuzzy finding for files
+   - Live grep (search within files)
+   - Customizable preview windows
+   - Modern search interface
 
-### File Finding
+2. **Enhanced Features**:
+   - Git integration
+   - Buffer search
+   - Help tag search
+   - Command search
 
-- `<Space>ff` - Find files in current directory
-- `<Space>fb` - Find buffers
-- `<Space>fg` - Live grep (search within files)
-- `<Space>fh` - Find help tags
-- `<Space>fm` - Find marks
-- `<Space>fo` - Find old files
-- `<Space>fc` - Find commands
+3. **Advanced Features**:
+   - Custom pickers
+   - Extensible architecture
+   - Multiple themes
+   - Action customization
 
-### Git Integration
+## How to Use
 
-- `<Space>gc` - Git commits
-- `<Space>gb` - Git branches
-- `<Space>gs` - Git status
-- `<Space>gf` - Git files
+### Basic Usage
+- Find files with Space+ff
+- Find buffers with Space+fb
+- Live grep with Space+fg
+- Find help tags with Space+fh
+- Find marks with Space+fm
+- Find old files with Space+fo
+- Find commands with Space+fc
+- Git commits with Space+gc
+- Git branches with Space+gb
+- Git status with Space+gs
+- Git files with Space+gf
 
-## Advanced Features
+### Configuration
+- Edit `lua/config/telescope.lua`
+- Set up custom pickers
+- Configure keybindings
+- Customize appearance
 
-### Custom Pickers
+### Integration
+- Works with git
+- Compatible with LSP
+- Supports custom themes
+- Works with other plugins
 
-Telescope comes with many built-in pickers, but you can also create custom ones:
-
-```lua
--- Example of a custom picker
-require('telescope.builtin').custom_finder({
-  results = your_results,
-  sorter = require('telescope.sorters').get_fuzzy_file,
-  previewer = require('telescope.previewers').vim_buffer_cat.new({}),
-})
-```
-
-### Preview Windows
-
-- `<C-p>` - Toggle preview window
-- `<C-v>` - Open in vertical split
-- `<C-s>` - Open in horizontal split
-- `<C-t>` - Open in new tab
-
-### Actions
-
-- `<CR>` - Open selected item
-- `<C-x>` - Open in horizontal split
-- `<C-v>` - Open in vertical split
-- `<C-t>` - Open in new tab
-- `<C-q>` - Send to quickfix list
-- `<C-c>` - Close telescope
-
-## Configuration
-
-### Basic Setup
-
-```lua
-require('telescope').setup({
-  defaults = {
-    -- Default configuration for all pickers
-    mappings = {
-      i = {
-        -- Insert mode mappings
-        ['<C-p>'] = require('telescope.actions.layout').toggle_preview,
-      },
-      n = {
-        -- Normal mode mappings
-        ['<C-p>'] = require('telescope.actions.layout').toggle_preview,
-      },
-    },
-  },
-  pickers = {
-    -- Custom configuration for specific pickers
-    find_files = {
-      theme = "dropdown",
-      previewer = false,
-    },
-    live_grep = {
-      theme = "dropdown",
-    },
-  },
-})
-```
-
-### Custom Themes
-
-Telescope supports various themes for different visual styles:
-
-```lua
-require('telescope').setup({
-  defaults = {
-    theme = "dropdown", -- or "ivy", "cursor", "center"
-  },
-})
-```
-
-## Tips and Tricks
-
-1. **Quick File Navigation**
-
-   - Use `<Space>ff` to quickly find and open files
-   - Press `<C-d>` to show hidden files
-   - Use `<C-f>` to toggle between file and directory mode
-
-2. **Efficient Searching**
-
-   - Use `<C-n>` and `<C-p>` to navigate through results
-   - Press `<C-c>` to clear the search
-   - Use `<C-q>` to send results to quickfix list
-
-3. **Git Integration**
-   - Use `<Space>gc` to browse git commits
-   - Press `<CR>` on a commit to see its changes
-   - Use `<Space>gb` to switch branches
-
-## Resources
-
-- [Official Documentation](https://github.com/nvim-telescope/telescope.nvim)
-- [Telescope Wiki](https://github.com/nvim-telescope/telescope.nvim/wiki)
-- [Example Configurations](https://github.com/nvim-telescope/telescope.nvim/wiki/Example-Configurations)
-- [Video Tutorial](https://www.youtube.com/watch?v=NW4K3t1Vyq0)
+## Reference Links
+- [GitHub Repository](https://github.com/nvim-telescope/telescope.nvim)
+- [Documentation](https://github.com/nvim-telescope/telescope.nvim#features)
+- [Examples](https://github.com/nvim-telescope/telescope.nvim/wiki/Example-Configurations)

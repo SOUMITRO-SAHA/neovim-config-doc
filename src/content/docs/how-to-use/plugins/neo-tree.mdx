@@ -1,168 +1,63 @@
 ---
 title: Neo-tree
-description: A modern file explorer for Neovim
+description: A Neovim plugin to turn the built-in file explorer into a modern file explorer
 ---
 
-# Neo-tree
+Neo-tree is a modern file explorer plugin for Neovim that transforms the built-in file explorer into a more powerful and visually appealing tool.
 
-[Neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim) is a modern file explorer for Neovim that provides a tree view of your file system with git integration and other advanced features.
+## What Problem Does It Solve?
 
-## Key Features
+Traditional file explorers in Neovim can be:
+- Limited in functionality
+- Visually outdated
+- Hard to navigate
+- Missing modern features
+- Performance heavy
 
-- File system tree view
-- Git integration
-- File filtering
-- Customizable icons
-- Multiple source support
-- Window management
+## How It Improves Productivity
 
-## Basic Usage
+1. **Better Interface**:
+   - Modern and clean design
+   - File icons support
+   - Git integration
+   - Smooth animations
 
-### Navigation
+2. **Enhanced Features**:
+   - File filtering
+   - Search capabilities
+   - Git status indicators
+   - File operations
 
-- `<Space>e` - Toggle file explorer
-- `a` - Add file/folder
-- `d` - Delete file/folder
-- `r` - Rename file/folder
-- `x` - Cut file/folder
-- `c` - Copy file/folder
-- `p` - Paste file/folder
-- `<CR>` or `o` - Open file/folder
-- `R` - Refresh tree
-- `?` - Show help
+3. **Advanced Features**:
+   - Custom commands
+   - Window management
+   - File system operations
+   - Integration with other plugins
 
-### Window Management
+## How to Use
 
-- `<C-h/l>` - Navigate between explorer and editor
-- `<C-v>` - Open in vertical split
-- `<C-s>` - Open in horizontal split
-- `<C-t>` - Open in new tab
+### Basic Usage
+- Open/close file explorer
+- Navigate through files
+- Create/delete files
+- Copy/move files
+- Search files
+- Filter files
+- View git status
 
-## Advanced Features
+### Configuration
+- Edit `lua/config/neo-tree.lua`
+- Customize appearance
+- Set up keybindings
+- Configure integrations
 
-### Git Integration
+### Integration
+- Works with git
+- Compatible with LSP
+- Supports file icons
+- Works with other plugins
 
-Neo-tree shows git status indicators:
-
-- `M` - Modified
-- `A` - Added
-- `D` - Deleted
-- `R` - Renamed
-- `U` - Updated
-- `C` - Copied
-- `?` - Untracked
-
-### File Filtering
-
-- `/` - Search/filter files
-- `<C-c>` - Clear filter
-- `f` - Toggle file filter
-- `F` - Toggle folder filter
-
-### Custom Actions
-
-You can define custom actions for files and folders:
-
-```lua
-require("neo-tree").setup({
-  filesystem = {
-    filtered_items = {
-      visible = true,
-      show_hidden_count = true,
-      hide_dotfiles = false,
-      hide_gitignored = true,
-    },
-  },
-  window = {
-    mappings = {
-      ["<space>"] = "none",
-      ["o"] = "open",
-      ["<CR>"] = "open",
-      ["<C-v>"] = "open_vsplit",
-      ["<C-s>"] = "open_split",
-      ["<C-t>"] = "open_tabnew",
-      ["<C-h>"] = "close_node",
-      ["<C-l>"] = "close_node",
-    },
-  },
-})
-```
-
-## Configuration
-
-### Basic Setup
-
-```lua
-require("neo-tree").setup({
-  close_if_last_window = true,
-  enable_diagnostics = true,
-  source_selector = {
-    winbar = true,
-    content_layout = "center",
-    sources = {
-      { source = "filesystem", display_name = " 󰉓 Files " },
-      { source = "buffers", display_name = " 󰈙 Buffers " },
-      { source = "git_status", display_name = " 󰊢 Git " },
-    },
-  },
-  default_component_configs = {
-    git_status = {
-      symbols = {
-        added = "󰐕",
-        modified = "󰆓",
-        deleted = "󰩺",
-        renamed = "󰁕",
-        untracked = "󰅒",
-        ignored = "󰅒",
-        unstaged = "󰅒",
-        staged = "󰅒",
-        conflict = "󰅒",
-      },
-    },
-  },
-})
-```
-
-### Custom Icons
-
-You can customize the icons used in the tree:
-
-```lua
-require("neo-tree").setup({
-  default_component_configs = {
-    icon = {
-      folder_closed = "󰉋",
-      folder_open = "󰝰",
-      folder_empty = "󰉖",
-      folder_empty_open = "󰉖",
-      default = "󰈚",
-    },
-  },
-})
-```
-
-## Tips and Tricks
-
-1. **Quick Navigation**
-
-   - Use `<Space>e` to toggle the explorer
-   - Press `o` to open files/folders
-   - Use `<C-h/l>` to switch between explorer and editor
-
-2. **File Management**
-
-   - Use `a` to create new files/folders
-   - Press `d` to delete files/folders
-   - Use `r` to rename files/folders
-
-3. **Git Integration**
-   - Git status is shown with icons
-   - Use `g` to toggle git status
-   - Press `]c` and `[c` to navigate changes
-
-## Resources
-
-- [Official Documentation](https://github.com/nvim-neo-tree/neo-tree.nvim)
-- [Example Configurations](https://github.com/nvim-neo-tree/neo-tree.nvim/wiki/Example-Configurations)
-- [Video Tutorial](https://www.youtube.com/watch?v=6t1v1b1b1b1b)
-- [GitHub Issues](https://github.com/nvim-neo-tree/neo-tree.nvim/issues)
+## Reference Links
+- [GitHub Repository](https://github.com/nvim-neo-tree/neo-tree.nvim)
+- [Documentation](https://github.com/nvim-neo-tree/neo-tree.nvim#features)
+- [Examples](https://github.com/nvim-neo-tree/neo-tree.nvim#examples)

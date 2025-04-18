@@ -3,201 +3,62 @@ title: Gitsigns
 description: Git integration for Neovim
 ---
 
-# Gitsigns
+Gitsigns is a plugin that provides Git integration for Neovim, showing line changes, blame information, and more in the gutter.
 
-[gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) provides Git integration for Neovim, showing line changes, blame information, and more in the gutter.
+## What Problem Does It Solve?
 
-## Key Features
+Traditional Git integration in Neovim can be:
+- Missing visual indicators for changes
+- Hard to track line modifications
+- Difficult to see blame information
+- Lacks hunk navigation
+- Inefficient staging process
 
-- Line change indicators
-- Git blame information
-- Hunk navigation
-- Stage/unstage hunks
-- Undo changes
-- Word diff
-- Status line integration
+## How It Improves Productivity
 
-## Basic Usage
+1. **Better Interface**:
+   - Line change indicators
+   - Git blame information
+   - Visual hunk markers
+   - Clean gutter display
 
-### Navigation
+2. **Enhanced Features**:
+   - Hunk navigation
+   - Stage/unstage hunks
+   - Undo changes
+   - Word diff
 
-- `]c` - Go to next change
-- `[c` - Go to previous change
-- `]h` - Go to next hunk
-- `[h` - Go to previous hunk
-- `<Space>gb` - Toggle blame line
-- `<Space>gh` - Preview hunk
-- `<Space>gs` - Stage hunk
-- `<Space>gu` - Undo stage hunk
+3. **Advanced Features**:
+   - Status line integration
+   - Custom signs
+   - Preview windows
+   - Git operations
 
-### Git Operations
+## How to Use
 
-- `<Space>gs` - Stage hunk
-- `<Space>gu` - Undo stage hunk
-- `<Space>gp` - Preview hunk
-- `<Space>gb` - Toggle blame line
-- `<Space>gd` - Toggle deleted line highlighting
-- `<Space>gc` - Toggle line highlighting
+### Basic Usage
+- Navigate changes with ]c/[c
+- Navigate hunks with ]h/[h
+- Toggle blame with Space+gb
+- Preview hunks with Space+gh
+- Stage hunks with Space+gs
+- Undo stage with Space+gu
+- Toggle deleted lines with Space+gd
+- Toggle line highlighting with Space+gc
 
-## Configuration
+### Configuration
+- Edit `lua/config/gitsigns.lua`
+- Customize signs
+- Set up keybindings
+- Configure blame display
 
-### Basic Setup
+### Integration
+- Works with status line
+- Compatible with git
+- Supports custom signs
+- Works with other plugins
 
-```lua
-require('gitsigns').setup({
-  signs = {
-    add = { text = '+' },
-    change = { text = '│' },
-    delete = { text = '_' },
-    topdelete = { text = '‾' },
-    changedelete = { text = '~' },
-    untracked = { text = '┆' },
-  },
-  signcolumn = true,
-  numhl = false,
-  linehl = false,
-  word_diff = false,
-  watch_gitdir = {
-    interval = 1000,
-    follow_files = true,
-  },
-  attach_to_untracked = true,
-  current_line_blame = false,
-  current_line_blame_opts = {
-    virt_text = true,
-    virt_text_pos = 'eol',
-    delay = 1000,
-  },
-  sign_priority = 6,
-  update_debounce = 100,
-  status_formatter = nil,
-  max_file_length = 40000,
-  preview_config = {
-    border = 'single',
-    style = 'minimal',
-    relative = 'cursor',
-    row = 0,
-    col = 1,
-  },
-})
-```
-
-### Custom Signs
-
-Customize the signs used in the gutter:
-
-```lua
-require('gitsigns').setup({
-  signs = {
-    add = { text = '▎', hl = 'GitSignsAdd' },
-    change = { text = '▎', hl = 'GitSignsChange' },
-    delete = { text = '▁', hl = 'GitSignsDelete' },
-    topdelete = { text = '▔', hl = 'GitSignsDelete' },
-    changedelete = { text = '▎', hl = 'GitSignsChange' },
-    untracked = { text = '▎', hl = 'GitSignsAdd' },
-  },
-})
-```
-
-### Blame Configuration
-
-Configure blame line display:
-
-```lua
-require('gitsigns').setup({
-  current_line_blame = true,
-  current_line_blame_opts = {
-    virt_text = true,
-    virt_text_pos = 'eol',
-    delay = 1000,
-    ignore_whitespace = false,
-  },
-})
-```
-
-## Advanced Features
-
-### Word Diff
-
-Enable word diff highlighting:
-
-```lua
-require('gitsigns').setup({
-  word_diff = true,
-  diff_opts = {
-    internal = false,
-    algorithm = 'myers',
-    indent_heuristic = true,
-    linematch = false,
-  },
-})
-```
-
-### Status Line Integration
-
-Configure status line integration:
-
-```lua
-require('gitsigns').setup({
-  status_formatter = function(status)
-    local added = status.added
-    local changed = status.changed
-    local removed = status.removed
-    local head = status.head
-    local diff = string.format(
-      '+%d ~%d -%d',
-      added,
-      changed,
-      removed
-    )
-    return { head = head, diff = diff }
-  end,
-})
-```
-
-### Preview Configuration
-
-Customize hunk preview window:
-
-```lua
-require('gitsigns').setup({
-  preview_config = {
-    border = 'rounded',
-    style = 'minimal',
-    relative = 'cursor',
-    row = 0,
-    col = 1,
-    width = 120,
-    height = 40,
-    x = 0,
-    y = 0,
-  },
-})
-```
-
-## Tips and Tricks
-
-1. **Quick Navigation**
-
-   - Use `]c` and `[c` to navigate changes
-   - Press `]h` and `[h` to navigate hunks
-   - Use `<Space>gb` to toggle blame line
-
-2. **Git Operations**
-
-   - Use `<Space>gs` to stage hunks
-   - Press `<Space>gu` to undo staged hunks
-   - Use `<Space>gp` to preview hunks
-
-3. **Visual Feedback**
-   - Changes are shown in the gutter
-   - Blame information appears on hover
-   - Hunks can be previewed before staging
-
-## Resources
-
-- [Official Documentation](https://github.com/lewis6991/gitsigns.nvim)
-- [Example Configurations](https://github.com/lewis6991/gitsigns.nvim/wiki/Example-configurations)
-- [Video Tutorial](https://www.youtube.com/watch?v=8t1v1b1b1b1b)
-- [GitHub Issues](https://github.com/lewis6991/gitsigns.nvim/issues)
-- [Related Plugins](https://github.com/topics/neovim-git)
+## Reference Links
+- [GitHub Repository](https://github.com/lewis6991/gitsigns.nvim)
+- [Documentation](https://github.com/lewis6991/gitsigns.nvim#features)
+- [Examples](https://github.com/lewis6991/gitsigns.nvim/wiki/Example-configurations)

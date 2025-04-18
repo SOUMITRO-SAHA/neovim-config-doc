@@ -3,235 +3,64 @@ title: Which-key
 description: A keybinding helper for Neovim
 ---
 
-# Which-key
+Which-key is a plugin that helps you remember keybindings by showing a popup with possible keybindings of the key you just pressed.
 
-[which-key.nvim](https://github.com/folke/which-key.nvim) is a plugin that helps you remember keybindings by showing a popup with possible keybindings of the key you just pressed.
+## What Problem Does It Solve?
 
-## Key Features
+Traditional keybinding management in Neovim can be:
+- Hard to remember all keybindings
+- No visual reminders
+- Missing keybinding organization
+- Lacks grouping functionality
+- Inefficient key discovery
 
-- Keybinding popup
-- Group organization
-- Custom labels
-- Timeout configuration
-- Prefix handling
-- Register support
-- Window customization
-- Performance optimized
+## How It Improves Productivity
 
-## Basic Usage
+1. **Better Interface**:
+   - Keybinding popup
+   - Group organization
+   - Custom labels
+   - Timeout configuration
 
-### Default Behavior
+2. **Enhanced Features**:
+   - Prefix handling
+   - Register support
+   - Window customization
+   - Performance optimization
 
+3. **Advanced Features**:
+   - Custom groups
+   - Custom labels
+   - Timeout configuration
+   - Register support
+
+## How to Use
+
+### Basic Usage
 - Press a key to see available keybindings
 - Wait for timeout to execute command
 - Press another key to see nested keybindings
-- Press `<Esc>` to cancel
+- Press Esc to cancel
+- Show space keybindings with Space
+- Show window keybindings with C-h/j/k/l
+- Show fold keybindings with z
+- Show goto keybindings with g
+- Show previous keybindings with [
+- Show next keybindings with ]
 
-### Navigation
+### Configuration
+- Edit `lua/config/which-key.lua`
+- Set up custom groups
+- Configure keybindings
+- Customize appearance
 
-- `<Space>` - Show space keybindings
-- `<C-h/j/k/l>` - Show window keybindings
-- `z` - Show fold keybindings
-- `g` - Show goto keybindings
-- `[` - Show previous keybindings
-- `]` - Show next keybindings
+### Integration
+- Works with marks
+- Compatible with registers
+- Supports spelling
+- Works with other plugins
 
-## Configuration
-
-### Basic Setup
-
-```lua
-require('which-key').setup({
-  plugins = {
-    marks = true,
-    registers = true,
-    spelling = {
-      enabled = true,
-      suggestions = 20,
-    },
-    presets = {
-      operators = true,
-      motions = true,
-      text_objects = true,
-      windows = true,
-      nav = true,
-      z = true,
-      g = true,
-    },
-  },
-  icons = {
-    breadcrumb = "»",
-    separator = "➜",
-    group = "+",
-  },
-  window = {
-    border = "single",
-    position = "bottom",
-    margin = { 1, 0, 1, 0 },
-    padding = { 2, 2, 2, 2 },
-    winblend = 0,
-  },
-  layout = {
-    height = { min = 4, max = 25 },
-    width = { min = 20, max = 50 },
-    spacing = 3,
-    align = "left",
-  },
-  ignore_missing = false,
-  hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ "},
-  show_help = true,
-  triggers = "auto",
-  triggers_blacklist = {
-    i = { "j", "k" },
-    v = { "j", "k" },
-  },
-})
-```
-
-### Custom Groups
-
-Define custom keybinding groups:
-
-```lua
-local wk = require('which-key')
-
-wk.register({
-  f = {
-    name = "file",
-    f = { "<cmd>Telescope find_files<cr>", "Find File" },
-    r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-    n = { "<cmd>enew<cr>", "New File" },
-  },
-  b = {
-    name = "buffer",
-    b = { "<cmd>Telescope buffers<cr>", "Show Buffers" },
-    n = { "<cmd>bnext<cr>", "Next Buffer" },
-    p = { "<cmd>bprevious<cr>", "Previous Buffer" },
-    d = { "<cmd>bdelete<cr>", "Delete Buffer" },
-  },
-  g = {
-    name = "git",
-    s = { "<cmd>Git<cr>", "Status" },
-    c = { "<cmd>Git commit<cr>", "Commit" },
-    p = { "<cmd>Git push<cr>", "Push" },
-    l = { "<cmd>Git pull<cr>", "Pull" },
-  },
-}, { prefix = "<leader>" })
-```
-
-### Window Customization
-
-Customize the popup window:
-
-```lua
-require('which-key').setup({
-  window = {
-    border = "rounded",
-    position = "bottom",
-    margin = { 1, 0, 1, 0 },
-    padding = { 2, 2, 2, 2 },
-    winblend = 0,
-    zindex = 1000,
-  },
-  layout = {
-    height = { min = 4, max = 25 },
-    width = { min = 20, max = 50 },
-    spacing = 3,
-    align = "left",
-  },
-})
-```
-
-## Advanced Features
-
-### Custom Labels
-
-Add custom labels to keybindings:
-
-```lua
-local wk = require('which-key')
-
-wk.register({
-  ["<leader>"] = {
-    f = {
-      name = "+file",
-      f = { "<cmd>Telescope find_files<cr>", "Find File", icon = "🔍" },
-      r = { "<cmd>Telescope oldfiles<cr>", "Recent Files", icon = "📚" },
-      n = { "<cmd>enew<cr>", "New File", icon = "📄" },
-    },
-  },
-}, {
-  prefix = "<leader>",
-  icons = {
-    breadcrumb = "»",
-    separator = "➜",
-    group = "+",
-  },
-})
-```
-
-### Timeout Configuration
-
-Configure popup timing:
-
-```lua
-require('which-key').setup({
-  timeout = 300,
-  delay = 0,
-  triggers = "auto",
-  triggers_blacklist = {
-    i = { "j", "k" },
-    v = { "j", "k" },
-  },
-})
-```
-
-### Register Support
-
-Enable register display:
-
-```lua
-require('which-key').setup({
-  plugins = {
-    registers = true,
-  },
-  register = {
-    bindings = {
-      ["'"] = "quotes",
-      ['"'] = "double quotes",
-      ['`'] = "backticks",
-      ['('] = "parenthesis",
-      ['['] = "square brackets",
-      ['<'] = "angle brackets",
-      ['{'] = "braces",
-    },
-  },
-})
-```
-
-## Tips and Tricks
-
-1. **Quick Access**
-
-   - Use `<Space>` to see all leader keybindings
-   - Press `<Esc>` to cancel
-   - Use timeout to execute commands
-
-2. **Organization**
-
-   - Group related keybindings
-   - Use descriptive names
-   - Add icons for visual recognition
-
-3. **Customization**
-   - Adjust window appearance
-   - Configure timeouts
-   - Add custom labels
-
-## Resources
-
-- [Official Documentation](https://github.com/folke/which-key.nvim)
-- [Example Configurations](https://github.com/folke/which-key.nvim/wiki/Example-configurations)
-- [Video Tutorial](https://www.youtube.com/watch?v=2t1v1b1b1b1b)
-- [GitHub Issues](https://github.com/folke/which-key.nvim/issues)
-- [Related Plugins](https://github.com/topics/neovim-keybinding)
+## Reference Links
+- [GitHub Repository](https://github.com/folke/which-key.nvim)
+- [Documentation](https://github.com/folke/which-key.nvim#features)
+- [Examples](https://github.com/folke/which-key.nvim/wiki/Example-configurations)
