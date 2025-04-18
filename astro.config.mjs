@@ -11,12 +11,12 @@ export default defineConfig({
 				{
 					icon: "github",
 					label: "GitHub",
-					href: "https://github.com/SOUMITRO-SAHA/neovim-config-doc",
+					href: "https://github.com/SOUMITRO-SAHA",
 				},
 				{
 					icon: "twitter",
 					label: "Twitter",
-					href: "https://x.com/SOUMITRO_SAHA",
+					href: "https://x.com/SoumitraSaha100",
 				},
 			],
 			sidebar: sidebar,
